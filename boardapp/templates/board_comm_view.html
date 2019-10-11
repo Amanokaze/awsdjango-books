@@ -1,0 +1,25 @@
+		<div class="row border-top-line">
+			<div class="col-12"><h2>{{ object.title }}</h2></div>
+		</div>
+		<div class="row border-bottom-line">
+			<div class="col-6"><h4><span style="padding-right: 30px">{{ object.user.last_name }}</span><span>{{ object.registered_date|date:"Y-m-d H:i:s" }}</span></h4></div>
+			<div class="col-6 right">
+				{% if object.user == request.user  and object.category.authority <= user.is_superuser   %}
+					<form action="{% url 'boarddeleteres' %}" method="POST" data-id="{{ object.id }}">
+					<input type="hidden" name="article_id" value="{{ object.id }}" />
+					<input type="hidden" name="referer" value="comm" />
+					{% csrf_token %}
+					<p>
+					<span style="cursor:pointer" onClick="modifyClick({{ object.id }})">수정</span>
+					<span style="cursor:pointer" onClick="deleteClick({{ object.id }})">삭제</span>
+					</p>
+					</form>
+				{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 view-content-comm">
+				<p>{{ object.content }}</p>
+				{% if object.image %}<img src="{{ object.image.url }}" />{% endif %}
+			</div>
+		</div>

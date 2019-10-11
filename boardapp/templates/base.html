@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML LANG="KO">
+<HEAD>
+	<TITLE>{% block title %} AWS / Django Web Application{% endblock %}</TITLE>
+	<META charset="utf-8" />
+	{% load static %}<LINK REL='STYLESHEET' HREF="{% static 'boardapp/assets/css/main.css' %}" />
+	{% load static %}<SCRIPT src="{% static 'boardapp/assets/js/jquery-3.3.1.min.js' %}" ></SCRIPT>
+	{% block script %}{% endblock %}
+</HEAD>
+<BODY>
+	<DIV ID="header">
+		<DIV CLASS="logo" >
+			<DIV CLASS="row">
+				<DIV CLASS="col-8 logo-link dark-link"><A href="{% url 'main' %}">AWS / Django Web Application</A></DIV>
+				<DIV CLASS="col-4 center member-link dark-link">
+				{% if user.username %}
+				<A href="{% url 'password_change' %}">{{ user.last_name }} 님</A> /
+				<A href="{% url 'logout' %}">로그아웃</A>
+				{% else %}
+				<A href="{% url 'login' %}">로그인</A> /
+				<A href="{% url 'register' %}">회원가입</A>
+				{% endif %}				
+				</DIV>
+			</DIV>
+		</DIV>
+		<DIV CLASS="menu">
+			<DIV CLASS="row">
+				<DIV CLASS="col-2 center sideline dark-link"><A href="{% url 'main' %}">HOME</A></DIV>
+				<DIV CLASS="col-2 center sideline dark-link"><A href="{% url 'introduce' %}">소개</A></DIV>
+				<DIV CLASS="col-2 center sideline dark-link"><A href="{% url 'boardlist' 'notice' %}">공지사항</A></DIV>
+				<DIV CLASS="col-2 center sideline dark-link"><A href="{% url 'boardlist' 'free' %}">자유 게시판</A></DIV>
+				<DIV CLASS="col-2 center sideline dark-link"><A href="{% url 'commlist' 'comm' %}">대화형 게시판</A></DIV>
+				<DIV CLASS="col-2 center sideline">&nbsp;</DIV>
+			</DIV>
+		</DIV>
+	</DIV>
+	<DIV ID="container">
+		{% block content %}{% endblock %}
+	</DIV>
+	<DIV ID="footer">
+		<DIV ID="row">
+			<DIV CLASS="col-12 center">Copyright by Digitalbooks / <A href="mailto:onikaze.books@gmail.com">Contact Us</A></DIV>
+		</DIV>
+	</DIV>
+</BODY>
+</HTML>

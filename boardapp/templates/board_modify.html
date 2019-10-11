@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.category.category_name }} - 게시물 수정 {% endblock %}
+
+{% block script %}
+{% load static %}<SCRIPT SRC = "{% static 'boardapp/assets/js/boards.js' %}"></SCRIPT>
+{% if user.username == "" or object.user.id != user.id %}
+<SCRIPT>
+	alert('잘못된 접근입니다.');
+	location.href="{% url 'main' %}";
+</SCRIPT>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row block-center board">
+	<div class="col-10">
+		<form id="modify_form" action="{% url 'boardmodifyres' %}" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{{ object.id }}" />
+		<input type="hidden" name="referer" value="board" />
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-12"><h4>{{ object.category.category_name }} - 게시물 수정</h4></div>
+		</div>
+		<div class="row border-top-line">
+			<div class="col-1 right"><p>작성자</p></div>
+			<div class="col-11"><p>{{ user.last_name }}</p></div>
+		</div>
+		<div class="row border-top-line">
+			<div class="col-1 right"><p>작성일</p></div>
+			<div class="col-11"><p>{{ object.registered_date|date:"Y-m-d" }}</p></div>
+		</div>
+		<div class="row">
+			<div class="col-1 right"><p>제목</p></div>
+			<div class="col-11"><input type="text" name="title" id="title" class="form-width-90" value="{{ object.title }}" /></div>
+		</div>
+		<div class="row height-400">
+			<div class="col-1 right"><p class="middle">내용</p></div>
+			<div class="col-11"><textarea name="content" id="content" class="form-width-90">{{ object.content }}</textarea></div>
+		</div>
+		<div class="row">
+			<div class="col-1 right"><p class="middle">이미지</p></div>
+			<div class="col-11">
+				<div class="row">
+					<div class="col-12">현재 등록된 파일: {{ object.image.name }}</div>
+				</div>
+				<div class="row">
+					<div class="col-12"><input type="file" name="img_file" accept="image/gif, image/jpeg, image/png"/></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 center">
+				<input type="button" onClick="modifySend()" value="수정" />
+				<input type="button" onClick="location.href='{% url 'boardview' object.id %}'" value="취소" />
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

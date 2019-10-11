@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}오류{% endblock %}
+
+{% block content %}
+<script>
+	alert("예기치 못한 오류가 발생했습니다.\n메인화면으로 이동합니다.");
+	location.href="{% url 'main' %}";
+</script>
+{% endblock %}

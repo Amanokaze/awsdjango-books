@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}오류{% endblock %}
+
+{% block content %}
+<div style="height: 70px;"></div>
+<div class="row block-center">
+	<div class="card-box col-8">
+		<div class="row">
+			<div class="col-12">
+				<h3>예기치 못한 오류가 발생했습니다.</h3>
+				<h3>처음부터 다시 이용해 주시기 바랍니다.</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 center">
+				<input type="button" value="로그인" onClick="location.href={% url 'login' %}"/>
+				<input type="button" value="회원가입" onClick="location.href={% url 'register' %}" />
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

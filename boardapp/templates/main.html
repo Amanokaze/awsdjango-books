@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Main{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block content %}
+<div class="row block-center">
+	<div class="col-12 center">
+		{% load static %}<img src="{% static 'boardapp/assets/images/main.png' %}" width=600 />
+	</div>
+</div>
+
+<div class="row block-center board">
+	<div class="col-11">
+		<div class="row">
+			<div class="list-title col-2"><p>카테고리</p></div>
+			<div class="list-title col-4"><p>제목</p></div>
+			<div class="list-title col-2"><p>등록자</p></div>
+			<div class="list-title col-2"><p>등록일</p></div>
+			<div class="list-title col-1"><p>조회</p></div>
+			<div class="list-title col-1"><p>추천</p></div>
+		</div>
+		{% for article in articles %}
+		<div class="row">
+			<div class="list-contents col-2"><p>{{ article.category.category_name }}</p></div>
+			<div class="list-contents-title col-4"><p>
+				<a href="{% url 'boardview' article.id %}">
+					{{ article.title }} 
+					{% if article.reply_count > 0 %}
+					[{{ article.reply_count }}]
+					{% endif %}
+				</a>
+			</p></div>
+			<div class="list-contents col-2"><p>{{ article.user.last_name }}</p></div>
+			<div class="list-contents col-2"><p>{{ article.registered_date|date:"Y-m-d" }}</p></div>
+			<div class="list-contents col-1"><p>{{ article.view_count }}</p></div>
+			<div class="list-contents col-1"><p>{{ article.like_count }}</p></div>
+		</div>
+		{% empty %}
+		<div class="row margin-10 center">
+		현재 등록된 게시물이 없습니다.
+		</div>		
+		{% endfor %}
+	</div>
+</div>
+<div class="height-100"></div>
+
+{% endblock %}

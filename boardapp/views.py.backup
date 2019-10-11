@@ -1,0 +1,197 @@
+from django.shortcuts import render
+from django.template.context_processors import csrf
+from boardapp.models import *
+from django.contrib.auth import authenticate, login
+
+# Create your views here.
+
+def main_page(request):
+	args={}
+	return render(request, 'main.html', args)
+
+def introduce_page(request):
+	return render(request, 'introduce.html')
+
+def user_register_page(request):
+	args={}
+	args.update(csrf(request))
+
+	return render(request, 'user_register.html', args)
+
+def user_register_idcheck(request):
+	if request.method == "POST":
+		username = request.POST['username']
+	else:
+		username = ''
+
+	idObject = User.objects.filter(username__exact=username)
+	idCount = idObject.count()
+
+	if idCount > 0:
+		msg = "이미 존재하는 ID입니다."
+		msgColor = "red"
+		result = 0
+	else:
+		msg = "사용할 수 있는 ID입니다."
+		msgColor = "blue"
+		result = 1
+
+	args = {}
+	args.update({'msg': msg, 'msgColor': msgColor, 'result': result})
+
+	return render(request, 'user_register_idcheck.html', args)
+
+def user_register_result(request):
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		last_name = request.POST['last_name']
+		phone = request.POST['phone']
+		email = request.POST['email']
+		birth_year = int(request.POST['birth_year'])
+		birth_month = int(request.POST['birth_month'])
+		birth_day = int(request.POST['birth_day'])
+	else:
+		username = ''
+
+	args={}
+
+	redirection_page = 'user_register_completed.html'
+
+	try:
+		if username:
+			idObject = User.objects.filter(username__exact=username)
+			user = User.objects.create_user(
+				username, password, last_name, email, phone, birth_year, birth_month, birth_day
+			)
+		else:
+			redirection_page = 'user_error.html'
+	except:
+		redirection_page = 'user_error.html'
+
+	return render(request, redirection_page, args)
+
+def user_info_page(request):
+	args={}
+	args.update(csrf(request))
+
+	return render(request, 'user_info.html', args)
+
+def user_info_result(request):
+	if request.method == "POST":
+		password = request.POST['password']
+		password_new = request.POST['password_new']
+		phone = request.POST['phone']
+		email = request.POST['email']
+
+	args={}
+
+	redirection_page = 'user_info_res.html'
+
+	try:
+		u = request.user
+
+		
+
+		if password_new:
+			used_password = password_new
+		else:
+			used_password = password
+
+		user = User.objects.create_user(						
+			u.username, used_password, u.last_name, email, phone, u.year, u.month, u.day
+		)
+	except:
+		redirection_page = 'user_error.html'
+
+	return render(request, redirection_page, args)
+
+def board_write_page(request):
+	args={}
+
+	return render(request, 'board_write.html', args)
+
+def board_modify_page(request):
+	args={}
+
+	return render(request, 'board_modify.html', args)
+
+def board_comm_write_page(request):
+	args={}
+
+	return render(request, 'comm_write.html', args)
+
+def board_comm_modify_page(request):
+	args={}
+
+	return render(request, 'comm_modify.html', args)
+
+def board_write_result(request):
+	args={}
+
+	return render(request, 'board_write_res.html', args)
+
+def board_modify_result(request):
+	args={}
+
+	return render(request, 'board_modify_res.html', args)
+
+def board_delete_result(request):
+	args={}
+
+	return render(request, 'board_delete_res.html', args)
+
+def reply_write(request):
+	args={}
+
+	return render(request, 'reply_write.html', args)
+
+def reply_modify(request):
+	args={}
+
+	return render(request, 'reply_modify.html', args)
+
+def reply_write_result(request):
+	args={}
+
+	return render(request, 'reply_write_res.html', args)
+
+def reply_modify_result(request):
+	args={}
+
+	return render(request, 'reply_modify_res.html', args)
+
+def reply_delete_result(request):
+	args={}
+
+	return render(request, 'reply_delete_res.html', args)
+
+def board_recommend(request):
+	args={}
+
+	return render(request, 'board_recommend.html', args)
+
+def reply_recommend(request):
+	args={}
+
+	return render(request, 'reply_recommend.html', args)
+
+def board_recommend_result(request):
+	args={}
+
+	return render(request, 'board_rec_res.html', args)
+
+def reply_recommend_result(request):
+	args={}
+
+	return render(request, 'reply_rec_res.html', args)
+
+def image_add_result(request):
+	args={}
+
+	return render(request, 'image_add_res.html', args)
+
+def image_delete_result(request):
+	args={}
+
+	return render(request, 'image_delete_res.html', args)

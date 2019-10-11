@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}회원가입 {% endblock %}
+
+{% block script %}
+{% load static %}<SCRIPT SRC = "{% static 'boardapp/assets/js/user.js' %}"></SCRIPT>
+{% endblock %}
+
+{% block content %}
+<div class="row block-center">
+	<div class="card-box col-6">
+	<form id="register_form" action="/boardapp/user_register_res/" method="post">
+	{% csrf_token %}
+	<input type="hidden" name="phone" id="phone" value="" />
+	<input type="hidden" name="email" id="email" value="" />
+		<div class="row">
+			<div class="col-12"><h2>회원가입</h2></div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">
+				ID: 
+				<span class="margin-left-10">
+					<input type="text" name="username" id="username" value="" size="8" />
+					<input type="button" value="중복확인" onClick="idCheck()" />
+					<span id="idcheck-result"></span>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">Password: 
+				<span class="margin-left-10">
+					<input type="password" name="password" id="password" value="" size="8" />
+				</span>
+				<br/>
+				<span style="font-size: 0.7em">※ 비밀번호는 최소 8글자 이상 입력해 주셔야 합니다. </span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">Password 확인: 
+				<span class="margin-left-10">
+					<input type="password" id="password_check" value="" size="8" />
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">이름: 
+				<span class="margin-left-10">
+					<input type="text" name="last_name" id="last_name" value="" size="8" />
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">
+				E-mail: 
+				<span class="margin-left-10">
+					<input type="text" id="email_id" id="email_id" value="" size="8" />
+					@ <input type="text" id="email_domain" value="" size="8" />
+					<select id="email_selection" onChange="changeEmailDomain()">
+						<option value="" selected="selected">--선택하세요--</option>
+						<option value="naver.com">naver.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="me.com">me.com</option>
+					</select>				
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">
+				전화번호: 
+				<span class="margin-left-10">
+					<input type="text" id="phone1" value="" size="3" /> - 
+					<input type="text" id="phone2" value="" size="4" /> - 
+					<input type="text" id="phone3" value="" size="4" /> 
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="ml-1 col-11">
+				생년월일:
+				<span class="margin-left-10">
+					<input type="text" name="birth_year" id="birth_year" value="" size="4" /> 년 
+					<select name="birth_month" id="birth_month">
+						<option value="1">1
+						<option value="2">2
+						<option value="3">3
+						<option value="4">4
+						<option value="5">5
+						<option value="6">6
+						<option value="7">7
+						<option value="8">8
+						<option value="9">9
+						<option value="10">10
+						<option value="11">11
+						<option value="12">12
+					</select> 월
+					<input type="text" name="birth_day" id="birth_day" value="" size="2" /> 일
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 center">
+				<input type="button" value="회원가입" onClick="userRegister()"/>
+				<input type="button" value="취소" onClick="cancelUserRegister()"/>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+{% endblock %}

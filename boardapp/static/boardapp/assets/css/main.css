@@ -1,0 +1,372 @@
+body, div, span, p, h1, h2, h3, h4, h5, h6, a{
+	font-size: 1rem;
+	font-weight:400;
+	font-family: '맑은 고딕', Arial, Helvetica, sans-serif;
+	font: inherit;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	white-space: normal;
+} 
+
+body {
+	line-height: 1;
+}
+
+input, select {
+	font-size: 1rem;
+	font-weight:400;
+	font-family: '맑은 고딕', Arial, Helvetica, sans-serif;
+	font: inherit;
+	border: 1px solid #888888;
+}
+
+input[type=file] {
+	border: 0;
+}
+
+img {
+	margin-top: 10px;
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: 800;
+}
+
+h2 {
+	font-size: 1.6rem;
+	font-weight:600;
+}
+
+h3 {
+	font-size: 1.2rem;
+	font-weight:300;
+}
+
+h4 {
+	font-size: 0.9rem;
+	font-weight: 200;
+}
+
+h5 {
+	font-size: 0.6rem;
+	font-weight: 200;
+}
+
+h6 {
+	font-size: 0.4rem;
+	font-weight: 100;
+}
+
+#header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+}
+
+#header > .logo {
+	color: #EEEEEE;
+	background: #000055;
+	height: 50px;
+	line-height: inherit;
+	padding: 1rem 1.25rem 0rem;
+	text-decoration: none; 
+	vertical-align: baseline;
+	display: block;
+}
+
+#header > .menu {
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    height: 40px;
+    line-height: inherit;
+    padding: 1rem 1.25rem 0rem;
+    text-decoration: none; 
+	width: 100%;
+	background: #001100;
+	border: 1px solid #555555;
+}
+
+#footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: #EEEEEE;
+	font-size: 0.75rem;
+	font-weight: 300;
+	height: 25px;
+	vertical-align: baseline;
+	display: block;
+	text-decoration: none;
+	background: #222222;
+	padding: 0.25rem 0 0 ;
+}
+
+#footer a {
+  text-decoration: none;
+  color: #EEEEEE;
+}
+
+#container {
+	display: block;
+	position: absolute;
+	top: 124px;
+	width: 100%;
+	height: inherit;
+	margin: 1rem;
+}
+
+#container a {
+	color: #000000;
+}
+
+.logo-link a {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.member-link a {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.dark-link a {
+	color: #EEEEEE;
+}
+
+.sideline {
+	border-right: 1px solid #999999;
+}
+
+.card-box {
+  display: block;
+  margin: 1rem;
+  border: 1px solid #BBBBBB;
+  vertical-align: middle;
+  padding: 1rem;
+}
+
+.card-box form > * {
+ margin: 2rem;
+}
+
+.write-box {
+	display: block;
+	vertical-align: middle;
+	background: #EEEEEE;
+	padding: 10px;
+}
+
+.content-box {
+	white-space: pre-wrap;
+}
+
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+
+.middle {
+	position: relative;
+	top: 50%;
+	-ms-transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	align-items: stretch;
+}
+
+.row > * {
+	box-sizing: border-box;
+}
+
+.row > .col-1 { width: 8.3333333333%; }
+.row > .col-2 { width: 16.6666666667%; }
+.row > .col-3 { width: 25%; }
+.row > .col-4 { width: 33.3333333333%; }
+.row > .col-5 { width: 41.6666666667%; }
+.row > .col-6 { width: 50%; }
+.row > .col-7 { width: 58.3333333333%; }
+.row > .col-8 { width: 66.6666666667%; }
+.row > .col-9 { width: 75%; }
+.row > .col-10 { width: 83.3333333333%; }
+.row > .col-11 { width: 91.6666666667%; }
+.row > .col-12 { width: 100%; }
+
+.row > .ml-1 { margin-left: 8.3333333333%; }
+.row > .ml-2 { margin-left: 16.6666666667%; }
+.row > .ml-3 { margin-left: 25%; }
+.row > .ml-4 { margin-left: 33.3333333333%; }
+.row > .ml-5 { margin-left: 41.6666666667%; }
+.row > .ml-6 { margin-left: 50%; }
+.row > .ml-7 { margin-left: 58.3333333333%; }
+.row > .ml-8 { margin-left: 66.6666666667%; }
+.row > .ml-9 { margin-left: 75%; }
+.row > .ml-10 { margin-left: 83.3333333333%; }
+.row > .ml-11 { margin-left: 91.6666666667%; }
+.row > .ml-12 { margin-left: 100%; }
+
+.row.block-center {
+	justify-content: center;
+}
+
+.margin-10 { margin: 10px; }
+.margin-top-10 { margin-top: 10px; }
+.margin-right-10 { margin-right: 10px; }
+.margin-bottom-10 { margin-bottom: 10px; }
+.margin-left-10 { margin-left: 10px; }
+
+.border-top-line {
+	border-top: 1px #222222 solid;
+	margin-top: 10px;
+}
+
+.border-bottom-line {
+	border-bottom: 1px #BBBBBB solid;
+}
+
+.border-top-dotted {
+	border-top: 1px #DDDDDD dotted;
+}
+
+.border-bottom-dotted {
+	border-bottom: 10x #DDDDDD dotted;
+}
+
+.board .row > * {
+	padding: 10px;
+}
+
+.list-title {
+	background-color: transparent;
+	height: 30px;
+	border-top: 1px #222222 solid;
+	border-bottom: 1px #222222 solid;
+	position: relative;
+}
+
+.list-contents, .list-contents-title {
+	background-color: transparent;
+	height: 30px;
+	border-bottom: 1px #999999 dotted;
+	position: relative;
+}
+
+.list-title p {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.list-contents p {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font-size: 1rem;
+	font-weight: 300;
+}
+
+.list-contents-title p {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 2%;
+	-ms-transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
+	font-size: 1rem;
+	font-weight: 300;
+}
+
+.view-content {
+	min-height: 300px;
+	display: block;
+	margin: 20px;
+}
+
+.view-content-comm {
+	display: block;
+	margin: 20px;
+}
+
+.form-width-90 {
+	width: 90%;
+	height: 100%;
+}
+
+.height-080 { height: 80px; }
+.height-100 {	height: 100px; }
+.height-200 {	height: 200px; }
+.height-300 {	height: 300px; }
+.height-400 {	height: 400px; }
+
+
+.article-reply .row > * {
+	padding: 5px 0 0 0;
+}
+
+.reply-reply {
+	display: none;
+}
+
+.like-box {
+	display:  inline-block;
+	width: 100px;
+	height: 50px;
+	border: 2px #00F solid;
+	align-items: stretch;
+	box-sizing: border-box;
+}
+
+.like-tag-1 {
+	cursor: pointer;
+	background: transparent;
+}
+
+.like-tag-2 {
+	cursor: default;
+	background: #DDDDFF;
+}
+
+.like-contents {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	word-break: keep-all;
+}
+
+.like-text {
+	font-size: 1em;
+	text-align: center;
+	position: relative;
+}
+
+.like-count {
+	font-size: 1.2em;
+	color: #000080;
+	text-align: center;
+	position: relative;
+}
+

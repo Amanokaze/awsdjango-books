@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block script %}
+{% load static %}<SCRIPT SRC = "{% static 'boardapp/assets/js/boards.js' %}"></SCRIPT>
+{% endblock %}
+
+{% block content %}
+<div class="row block-center board">
+	<div class="col-10">
+		<div class="row">
+			<div class="col-12 "><h4>{{ object.category.category_name }}</h4></div>
+		</div>
+		<div class="row border-top-line">
+			<div class="col-9"><h2>{{ object.title }}</h2></div>
+			<div class="col-3 right"><h4>조회 {{ object.view_count }}</h4></div>
+		</div>
+		<div class="row border-bottom-line">
+			<div class="col-6"><h4>{{ object.user.last_name }}</h4></div>
+			<div class="col-6 right"><h4>{{ object.registered_date|date:"Y-m-d H:i:s" }}</h4></div>
+		</div>
+		<div class="row">
+			<div class="col-12 view-content">
+				<p class="content-box">{{ object.content }}</p>
+				{% if object.image %}<img src="{{ object.image.url }}" />{% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 article-like" data-id="{{ object.id }}"></div>
+		</div> 
+		<div class="row">
+			<div class="col-12 article-reply" data-id="{{ object.id }}"></div>
+		</div>
+		{% if user.username  %}
+			<div class="write-box">
+				<form action="" method="POST" data-type="reply" data-id="{{ object.id }}">
+				<input type="hidden" name="id" value="{{ object.id }}" />
+				<input type="hidden" name="level" value="0" />
+				{% csrf_token %}
+				<div class="row height-080 center">
+					<div class="col-11"><textarea name="content" class="form-width-90"></textarea></div>
+					<div class="col-1"><input type="button" onClick="replyWriteSend({{ object.id }})" value="등록" class="form-width-90" /></div>
+				</div>
+				</form>
+			</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-12 right">
+				{% if object.user == user and user.is_superuser >= object.category.authority %}
+					<form action="{% url 'boarddeleteres' %}" method="POST" id="delete_form">
+					<input type="hidden" name="article_id" value="{{ object.id }}" />
+					<input type="hidden" name="referer" value="board" />
+					{% csrf_token %}
+					<input type="button" onClick="location.href='{% url 'boardlist' object.category.category_code %}'" value="목록" />
+					<input type="button" onClick="location.href='{% url 'boardmodify' object.id %}'" value="수정" />
+					<input type="button" onClick="deleteClick()" value="삭제" />
+					</form>
+				{% else %}
+					<input type="button" onClick="location.href='{% url 'boardlist' object.category.category_code %}'" value="목록" />
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="height-100"></div>
+{% endblock %}

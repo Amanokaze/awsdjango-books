@@ -1,0 +1,57 @@
+<div class="row border-top-line">
+	<div class="col-12 margin-bottom-10"><h3>댓글 {{ replies.count }}개</h3></div>
+</div>
+
+{% for reply in replies %}
+<!-- Reply Title Block -->
+<div class="row">
+	{% if reply.level == 0 %}
+	<div class="col-12 reply-block" data-id="{{ reply.id }}">
+	{% elif reply.level == 1 %}
+	<div class="col-1 center">└</div>
+	<div class="col-11 reply-block" data-id="{{ reply.id }}">
+	{% endif %}
+		<div class="row border-top-dotted">
+			<div class="col-6"><h4><span style="padding-right: 30px">{{ reply.user.last_name }}</span><span>{{ reply.registered_date|date:"Y-m-d H:i:s" }}</span></h4></div>
+			<div class="col-6 right">
+					<form action="" method="POST" data-type="reply_delete" data-id="{{ reply.id }}">
+					<input type="hidden" name="reply_id" value="{{ reply.id }}" />
+					{% csrf_token %}
+					<p>
+					{% if reply.level == 0 %}
+					<span style="cursor:pointer" onClick="replyClick({{ reply.id }})">댓글</span>
+					{% endif %}
+					{% if reply.user == request.user %}
+					<span style="cursor:pointer" onClick="replyModifyClick({{ reply.id }})">수정</span>
+					<span style="cursor:pointer" onClick="replyDeleteClick({{ reply.id }}, {{ reply.article.id }})">삭제</span>
+					{% endif %}
+					</p>
+					</form>
+			</div>
+		</div>
+		<!-- Reply Content Block -->
+		<div class="row border-bottom-dotted">
+			<div class="col-12 view-content-comm">
+			{{ reply.content }}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Reply Write Block -->
+{% if user.username and reply.level == 0 %}
+<div class="reply-reply" data-id="{{ reply.id }}">
+	<div class="write-box">
+		<form action="" method="POST" data-type="reply-reply" data-id="{{ reply.id }}">
+		<input type="hidden" name="level" value="1" />
+		<input type="hidden" name="id" value="{{ reply.reference_reply_id }}" />
+		{% csrf_token %}
+		<div class="row height-080 center">
+			<div class="col-11"><textarea name="content" class="form-width-90"></textarea></div>
+			<div class="col-1"><input type="button" onClick="replyReplySend({{ reply.reference_reply_id }}, {{ reply.article.id }})" value="등록" class="form-width-90" /></div>
+		</div>
+		</form>
+	</div>
+</div>
+{% endif %}
+{% endfor %}
+

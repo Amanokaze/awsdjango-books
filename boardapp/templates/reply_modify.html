@@ -1,0 +1,12 @@
+			{% if user.username %}
+				<div class="write-box">
+					<form action="" method="POST" data-type="reply-modify" data-id="{{ object.id }}">
+					<input type="hidden" name="id" value="{{ object.id }}" />
+					{% csrf_token %}
+					<div class="row height-080 center">
+						<div class="col-11"><textarea name="content" class="form-width-90">{{ object.content }}</textarea></div>
+						<div class="col-1"><input type="button" onClick="replyModifySend({{ object.id }}, {{ object.article.id }})" value="수정" class="form-width-90" /></div>
+					</div>
+					</form>
+				</div>
+			{% endif %}

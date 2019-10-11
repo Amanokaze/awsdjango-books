@@ -1,0 +1,18 @@
+<form action="" method="POST" data-type="like" data-id="{{ article_id }}">
+<input type="hidden" name="article_id" value="{{ article_id }}" />
+{% csrf_token %}
+<div class="row">
+	<div class="col-12 center">
+		<div class="like-box {% if user_count == 1 %}like-tag-2{% else %}like-tag-1{% endif %}" onClick="likeClick({{ article_id }})">
+			<div class="row" style="height: 100%">
+				<div class="col-6 like-text" style="padding: 0">
+					<div class="like-contents">추천</div>
+				</div>
+				<div class="col-6 like-count" style="padding: 0">
+					<div class="like-contents">{{ like_count }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
