@@ -151,7 +151,7 @@ class BoardModifyView(DetailView):
 def board_comm_list_page(request, category):
 	error_flag = False
 	
-	if request.method == "POST":
+	if request.method == "POST" and request.POST['title']:
 		title = request.POST['title']
 		content = request.POST['content']
 		try:
