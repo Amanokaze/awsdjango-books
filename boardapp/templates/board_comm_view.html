@@ -5,7 +5,7 @@
 			<div class="col-6"><h4><span style="padding-right: 30px">{{ object.user.last_name }}</span><span>{{ object.registered_date|date:"Y-m-d H:i:s" }}</span></h4></div>
 			<div class="col-6 right">
 				{% if object.user == request.user  and object.category.authority <= user.is_superuser   %}
-					<form action="{% url 'boarddeleteres' %}" method="POST" data-id="{{ object.id }}">
+					<form action="{% url 'boarddeleteres' %}" id="delete_form" method="POST" data-id="{{ object.id }}">
 					<input type="hidden" name="article_id" value="{{ object.id }}" />
 					<input type="hidden" name="referer" value="comm" />
 					{% csrf_token %}
