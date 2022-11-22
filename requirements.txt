@@ -5,7 +5,7 @@ django-storages==1.7.1
 docutils==0.14
 jmespath==0.9.4
 mysqlclient==1.4.2.post1
-Pillow==7.1.0
+Pillow==9.3.0
 python-dateutil==2.8.0
 pytz==2018.9
 s3transfer==0.2.0
